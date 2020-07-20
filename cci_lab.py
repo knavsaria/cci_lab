@@ -7,6 +7,7 @@ from botocore.exceptions import ClientError
 from botocore.config import Config
 from boto3.dynamodb.conditions import Key
 import random
+import os
 
 parser=argparse.ArgumentParser()
 
@@ -33,7 +34,8 @@ def writer(pk_val):
         try:
             response = dynoTable.put_item(
                 Item={'id': '000' + str(pk_val),
-                'age': str(random.randint(0,999999))}, 
+                'age': str(random.randint(0,999999)),
+                'blob': os.urandom(350000)},
                 ReturnConsumedCapacity='TOTAL'
             )
             print(response)
