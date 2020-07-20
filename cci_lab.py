@@ -5,6 +5,7 @@ import json
 import boto3
 from botocore.exceptions import ClientError
 from botocore.config import Config
+from boto3.dynamodb.conditions import Key
 import random
 
 parser=argparse.ArgumentParser()
