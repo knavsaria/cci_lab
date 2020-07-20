@@ -42,7 +42,12 @@ def writer(pk_val):
             print(e)
 
 def reader(pk_val):
-    dynamodb = boto3.resource('dynamodb', region_name=region)
+    config = Config(
+      retries = dict(
+          max_attempts = 1
+          )
+      )
+    dynamodb = boto3.resource('dynamodb', region_name=region, config=config)
     dynoTable = dynamodb.Table(table)
     for i in range(100):
         try:
